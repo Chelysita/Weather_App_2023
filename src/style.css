@@ -1,0 +1,24 @@
+.forecast {
+  font-size: 40px;
+}
+.weatherApp {
+  border: 1px solid #e663a5;
+  padding: 15px;
+  margin: 20px auto;
+  max-width: 800px;
+  border-radius: 10px;
+}
+
+.low,
+.high {
+  font-size: 10px;
+}
+
+.low_high {
+  text-align: center;
+}
+.unitStyle {
+  font-size: 16px;
+  vertical-align: text-top;
+  text-decoration: none;
+}
