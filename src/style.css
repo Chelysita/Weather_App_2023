@@ -22,4 +22,10 @@
   vertical-align: text-top;
   text-decoration: none;
   text-decoration: none;
+  color: black;
+}
+
+.unitStyle:hover {
+  cursor: pointer;
+  transition: opacity 150ms ease-in-out;
 }
