@@ -21,11 +21,21 @@
   font-size: 16px;
   vertical-align: text-top;
   text-decoration: none;
-  text-decoration: none;
+
   color: black;
 }
+.unitColor {
+  text-decoration: none;
+  color: black;
+  transition: all 150ms ease-in-out;
+}
 
-.unitStyle:hover {
+.unitColor:hover {
   cursor: pointer;
-  transition: opacity 150ms ease-in-out;
+
+  color: blue;
+}
+
+.unitColor:active {
+  color: blue;
 }
