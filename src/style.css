@@ -1,6 +1,8 @@
 .forecast {
   font-size: 40px;
+  text-transform: capitalize;
 }
+
 .weatherApp {
   border: 1px solid #e663a5;
   padding: 15px;

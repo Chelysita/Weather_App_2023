@@ -1,3 +1,21 @@
+let apikey = "cdc6f40eaa51d2e0ae19d310a7a3769c";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apikey}&units=metric`;
+console.log(apiUrl);
+
+function displayTemperature(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  let cityElement = document.querySelector("#cityInput");
+  cityElement.innerHTML = response.data.name;
+  let descriptionElement = document.querySelector("#weatherDescription");
+  descriptionElement.innerHTML = response.data.weather[0].main;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = response.data.main.humidity;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+}
+axios.get(apiUrl).then(displayTemperature);
+
 function search(event) {
   event.preventDefault();
   let newcity = document.querySelector("#city-NewInput");

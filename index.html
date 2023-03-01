@@ -15,6 +15,7 @@
       src="https://kit.fontawesome.com/095204b1aa.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <title>Weather Forecast</title>
   </head>
@@ -45,7 +46,7 @@
           </div>
         </form>
         <br />
-        <h1 id="cityInput">LONDON</h1>
+        <h1 id="cityInput"></h1>
         <h3 id="displayDate"></h3>
       </div>
 
@@ -53,14 +54,14 @@
         <div class="row">
           <div class="col align-self-center">
             <img src="images/drop3.png" width="100px" />
-            <div class="humidityIcon">1%</div>
+            <div class="humidityIcon"><span id="humidity"></span>%</div>
           </div>
           <div class="col">
-            <div class="forecast p-2">Sunny</div>
+            <div class="forecast p-2" id="weatherDescription"></div>
             <img class="forecastIcon" src="images/sun.png" />
 
             <div class="forecast p-2">
-              <span id="temperature">12</span>
+              <span id="temperature"></span>
               <span class="unitStyle">
                 °
                 <a href="" class="unitColor" id="celsiusLink">C </a>|
@@ -70,7 +71,7 @@
           </div>
           <div class="col align-self-center">
             <img class="forecastIcon" src="images/wind.png" />
-            <div class="windSpeed">15 Km/h</div>
+            <div class="windSpeed"><span id="wind"></span> Km/h</div>
           </div>
         </div>
       </div>
