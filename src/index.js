@@ -2,6 +2,29 @@ let apikey = "cdc6f40eaa51d2e0ae19d310a7a3769c";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apikey}&units=metric`;
 console.log(apiUrl);
 
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tueday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
@@ -13,6 +36,8 @@ function displayTemperature(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  let dateElement = document.querySelector("#displayDate");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 axios.get(apiUrl).then(displayTemperature);
 
@@ -24,31 +49,6 @@ function search(event) {
 }
 let changeCity = document.querySelector("#form");
 changeCity.addEventListener("submit", search);
-
-let now = new Date();
-let displayDate = document.querySelector("#displayDate");
-let date = now.getDate();
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-let year = now.getFullYear();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tueday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-
-displayDate.innerHTML = `${day} ${hours}:${minutes}`;
 
 function changeToFarenheit(event) {
   event.preventDefault();
