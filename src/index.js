@@ -1,6 +1,6 @@
 let apikey = "cdc6f40eaa51d2e0ae19d310a7a3769c";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apikey}&units=metric`;
-console.log(apiUrl);
+let city = "Paris";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
@@ -22,7 +22,7 @@ function formatDate(timestamp) {
     "Saturday",
   ];
   let day = days[date.getDay()];
-  return `${day} ${hours}:${minutes}`;
+  return `Last updated: ${day} ${hours}:${minutes}`;
 }
 
 function displayTemperature(response) {
@@ -44,8 +44,8 @@ axios.get(apiUrl).then(displayTemperature);
 function search(event) {
   event.preventDefault();
   let newcity = document.querySelector("#city-NewInput");
-  let city = document.querySelector("#cityInput");
-  city.innerHTML = `${newcity.value}`;
+  let cityElement = document.querySelector("#cityInput");
+  cityElement.innerHTML = `${newcity.value}`;
 }
 let changeCity = document.querySelector("#form");
 changeCity.addEventListener("submit", search);
