@@ -1,6 +1,7 @@
 .forecast {
   font-size: 40px;
   text-transform: capitalize;
+  text-decoration-line: none;
 }
 
 .weatherApp {
@@ -10,7 +11,12 @@
   max-width: 800px;
   border-radius: 10px;
 }
-
+.a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
 .low,
 .high {
   font-size: 10px;
@@ -26,18 +32,19 @@
 
   color: black;
 }
-.unitColor {
+.unitStyle {
   text-decoration: none;
   color: black;
   transition: all 150ms ease-in-out;
 }
 
-.unitColor:hover {
-  cursor: pointer;
-
-  color: blue;
+.unitColor {
+  cursor: default;
+  text-decoration: none;
+  color: black;
 }
 
-.unitColor:active {
-  color: blue;
+.unitColor:hover {
+  color: black;
+  text-decoration: none;
 }
