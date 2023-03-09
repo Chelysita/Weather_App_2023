@@ -79,7 +79,7 @@ function displayHourForecast(response) {
         hourForecastHTML +
         ` 
           <div class="col text-center container-fluid">
-            <div class="card p-4 text-center container-fluid">
+            <div class="card p-auto text-center container-fluid" " >
               <img src="images/${
                 forecastHour.weather[0].icon
               }.png" width="40px" class="align-self-center" alt="..." />
