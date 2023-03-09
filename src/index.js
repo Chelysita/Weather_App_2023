@@ -21,6 +21,37 @@ function formatDate(timestamp) {
   return `Last updated: ${day} ${hours}:${minutes}`;
 }
 
+function formatHour(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let hour = date.getHours();
+  let hours = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "0",
+  ];
+  return hours[hour];
+}
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -34,6 +65,35 @@ function formatDay(timestamp) {
     "Saturday",
   ];
   return days[day];
+}
+
+function displayHourForecast(response) {
+  let hourForecast = response.data.hourly;
+  console.log(hourForecast);
+  let hourForecastElement = document.querySelector("#hourForecast");
+  let hourForecastHTML = `<div class="row">`;
+
+  hourForecast.forEach(function (forecastHour, index) {
+    if (index < 5) {
+      hourForecastHTML =
+        hourForecastHTML +
+        ` 
+          <div class="col">
+            <div class="card p-4">
+              <img src="images/${
+                forecastHour.weather[0].icon
+              }.png" class="card-img-top" alt="..." />
+              <h5 class="card-text">${Math.round(forecastHour.temp)}°</h5>
+
+              <small class="text-muted">${formatHour(forecastHour.dt)}</small>
+            </div>
+          </div>
+          
+          `;
+    }
+  });
+  hourForecastHTML = hourForecastHTML + `</div>`;
+  hourForecastElement.innerHTML = hourForecastHTML;
 }
 
 function displayDaysForecast(response) {
@@ -56,11 +116,11 @@ function displayDaysForecast(response) {
               }.png" width="40px "/></div>
               <div class="col container row d-flex justify-content-end">
                 <div class="col-3 low_high">
-                  ${Math.round(forecastDay.temp.min)}
+                  ${Math.round(forecastDay.temp.min)}°
                   <div class="low">LOW</div>
                 </div>
                 <div class="col-3 low_high">
-                  ${Math.round(forecastDay.temp.max)}
+                  ${Math.round(forecastDay.temp.max)}°
                   <div class="high">HIGH</div>
                 </div>
               </div>
@@ -78,6 +138,7 @@ function getForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apikey}&units=metric`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayDaysForecast);
+  axios.get(apiUrl).then(displayHourForecast);
 }
 
 function displayTemperature(response) {
