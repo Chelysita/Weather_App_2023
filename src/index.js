@@ -71,18 +71,18 @@ function displayHourForecast(response) {
   let hourForecast = response.data.hourly;
   console.log(hourForecast);
   let hourForecastElement = document.querySelector("#hourForecast");
-  let hourForecastHTML = `<div class="row">`;
+  let hourForecastHTML = `<div class="row container-fluid">`;
 
   hourForecast.forEach(function (forecastHour, index) {
     if (index < 5) {
       hourForecastHTML =
         hourForecastHTML +
         ` 
-          <div class="col">
-            <div class="card p-4">
+          <div class="col text-center container-fluid">
+            <div class="card p-4 text-center container-fluid">
               <img src="images/${
                 forecastHour.weather[0].icon
-              }.png" class="card-img-top" alt="..." />
+              }.png" width="40px" class="align-self-center" alt="..." />
               <h5 class="card-text">${Math.round(forecastHour.temp)}°</h5>
 
               <small class="text-muted">${formatHour(forecastHour.dt)}</small>
@@ -105,7 +105,7 @@ function displayDaysForecast(response) {
     if (index < 5) {
       forecastHTML =
         forecastHTML +
-        `<ul class="list-group">
+        `<ul class="list-group container-fluid">
        <li class="list-group-item">
             <div class="row">
               <div class="col text-start align-self-center">${formatDay(
@@ -135,7 +135,7 @@ function displayDaysForecast(response) {
 
 function getForecast(coordinates) {
   let apikey = "cdc6f40eaa51d2e0ae19d310a7a3769c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apikey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apikey}&units=imperial`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayDaysForecast);
   axios.get(apiUrl).then(displayHourForecast);
@@ -166,7 +166,7 @@ function displayTemperature(response) {
 
 function search(city) {
   let apikey = "cdc6f40eaa51d2e0ae19d310a7a3769c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
 }
 function handleSubmit(event) {
@@ -189,18 +189,5 @@ function changeToFarenheit(event) {
   let toFarenheit = document.querySelector("#temperature");
   toFarenheit.innerHTML = Math.round(farenheitTemp);
 }
-
-function changeToCelsius(event) {
-  event.preventDefault();
-  let toCelsius = document.querySelector("#temperature");
-  celsiusLink.classList.add("unitColor");
-  farenheitLink.classList.remove("unitColor");
-  toCelsius.innerHTML = Math.round(celsiusTemp);
-}
-let farenheitLink = document.querySelector("#farenheitLink");
-farenheitLink.addEventListener("click", changeToFarenheit);
-
-let celsiusLink = document.querySelector("#celsiusLink");
-celsiusLink.addEventListener("click", changeToCelsius);
 
 search("Boston");

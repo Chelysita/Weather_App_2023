@@ -19,13 +19,9 @@
 
     <title>Weather Forecast</title>
   </head>
-  <body>
-    <div class="weatherApp container-fluid">
-      <div
-        class="container text-center mt-5 mb-3"
-        mclass="mx-auto"
-        style="width: 600px"
-      >
+  <body class="container-fluid">
+    <div class="weatherApp container">
+      <div class="container-fluid text-center mt-5 mb-3" mclass="mx-auto">
         <form id="form">
           <div class="row">
             <div class="col-9">
@@ -63,19 +59,21 @@
             <div class="forecast p-2">
               <span id="temperature"></span>
               <span class="unitStyle">
-                <a href="#" class="under unitColor" id="celsiusLink">°C </a>|
-                <a href="#" class="under" id="farenheitLink">°F</a>
+                <a href="#" class="under unitColor" id="celsiusLink">°F </a>
               </span>
             </div>
           </div>
           <div class="col align-self-center">
             <img class="forecastIcon" src="images/wind.png" />
-            <div class="windSpeed"><span id="wind"></span> Km/h</div>
+            <div class="windSpeed"><span id="wind"></span> mph</div>
           </div>
         </div>
       </div>
 
-      <div class="container text-center mt-3 w-75" id="hourForecast"></div>
+      <div
+        class="container-fluid text-center mt-3 w-75"
+        id="hourForecast"
+      ></div>
       <div class="container text-center mt-5" id="daysForecast"></div>
       <p>
         <a href="https://venerable-semifreddo-277f43.netlify.app/"
