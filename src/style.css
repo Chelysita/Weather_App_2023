@@ -48,3 +48,8 @@ a:hover {
 .under {
   text-decoration: none;
 }
+
+.hourly {
+  display: flex;
+  justify-content: space-evenly;
+}
